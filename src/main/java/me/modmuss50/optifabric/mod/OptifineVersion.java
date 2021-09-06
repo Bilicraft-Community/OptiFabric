@@ -1,27 +1,36 @@
 package me.modmuss50.optifabric.mod;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
+import me.modmuss50.optifabric.util.ASMUtils;
+import me.modmuss50.optifabric.util.ZipUtils;
+import net.fabricmc.loader.api.FabricLoader;
+import org.apache.commons.io.FilenameUtils;
+import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang3.mutable.MutableBoolean;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.objectweb.asm.tree.ClassNode;
+import org.objectweb.asm.tree.FieldNode;
+
+import javax.swing.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.FileAlreadyExistsException;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 import java.util.zip.ZipError;
 import java.util.zip.ZipException;
-
-import com.google.gson.stream.JsonReader;
-
-import org.apache.commons.io.FilenameUtils;
-import org.apache.commons.lang3.mutable.MutableBoolean;
-
-import org.objectweb.asm.tree.ClassNode;
-import org.objectweb.asm.tree.FieldNode;
-
-import net.fabricmc.loader.api.FabricLoader;
-
-import me.modmuss50.optifabric.util.ASMUtils;
-import me.modmuss50.optifabric.util.ZipUtils;
 
 public class OptifineVersion {
 	public static String version;
@@ -35,7 +44,6 @@ public class OptifineVersion {
 
 		if (mods != null) {
 			File optifineJar = null;
-
 			for (File file : mods) {
 				if (!file.isDirectory() && "jar".equals(FilenameUtils.getExtension(file.getName())) && !file.getName().startsWith(".") && !file.isHidden()) {
 					JarType type = getJarType(file);
@@ -57,14 +65,87 @@ public class OptifineVersion {
 				}
 			}
 
+			if(optifineJar == null){
+				optifineJar = downloadAndPassJar(modsDir);
+			}
+
 			if (optifineJar != null) {
 				return optifineJar;
 			}
 		}
 
+
 		jarType = JarType.MISSING;
 		OptifabricError.setError("OptiFabric could not find the Optifine jar in the mods folder:\n%s", modsDir);
 		throw new FileNotFoundException("Could not find optifine jar");
+	}
+
+	private static File downloadAndPassJar(File modsDir){
+		// OMG, Optifine JAR is missing! let's download one!
+
+
+		String currentMcVersion = "unknown";
+		try (JsonReader in = new JsonReader(new InputStreamReader(OptifineVersion.class.getResourceAsStream("/version.json")))) {
+			in.beginObject();
+
+			while (in.hasNext()) {
+				if ("id".equals(in.nextName())) {
+					currentMcVersion = in.nextString();
+					break;
+				} else {
+					in.skipValue();
+				}
+			}
+		} catch (IOException | IllegalStateException e) {
+			OptifabricError.setError(e, "Failed to find current minecraft version, please report this");
+			e.printStackTrace();
+			return null;
+		}
+
+		JOptionPane.showMessageDialog(new JPanel(), "<html><body><p>由于 Optifine 的 EULA 协议，Bilicraft 不可以在 Modpack 中分发 Optifine 的二进制文件。</p>" +
+				"<p>因此，我们即将从 BMCLAPI 下载 Optifine 并自动安装到您的游戏中，下载过程中，游戏可能无响应。" +
+				"<p>点击 确定 后继续下载 Optifine 二进制文件</p>" +
+				"</body></html>", "Optifabric - Bilicraft Edition >> 需要下载依赖文件", JOptionPane.INFORMATION_MESSAGE);
+
+		try {
+			HttpClient httpClient = new DefaultHttpClient();
+			HttpGet httpGet = new HttpGet("https://bmclapi2.bangbang93.com/optifine/:mcversion"
+					.replace(":mcversion", currentMcVersion));
+			List<OptifineApiReturns> returns = new Gson().fromJson(IOUtils.toString(httpClient.execute(httpGet).getEntity().getContent(), StandardCharsets.UTF_8), new TypeToken<ArrayList<OptifineApiReturns>>() {}.getType());
+			OptifineApiReturns newestRelease = returns.get(0);
+			OptifineApiReturns newestPre = returns.get(returns.size() - 1);
+			OptifineApiReturns finalUse;
+			if (newestRelease.patch.startsWith("pre"))
+				finalUse = newestPre;
+			else
+				finalUse = newestRelease;
+			File downloadJar = new File(modsDir, "Optifine_" + currentMcVersion+ "_" + finalUse.type + "_" + finalUse.patch + ".jar");
+
+			httpGet = new HttpGet("https://bmclapi2.bangbang93.com/optifine/:mcversion/:type/:patch"
+					.replace(":mcversion", currentMcVersion)
+					.replace(":type", finalUse.type)
+					.replace(":patch", finalUse.patch));
+			HttpResponse response = httpClient.execute(httpGet);
+			Files.copy(response.getEntity().getContent(),downloadJar.toPath(), StandardCopyOption.REPLACE_EXISTING);
+			JarType type = getJarType(downloadJar);
+			if (type.isError()) {
+				jarType = JarType.CORRUPT_ZIP;
+				throw new RuntimeException("An error occurred when trying to find the optifine jar: " + type.name());
+			}
+
+			if (type == JarType.OPTIFINE_MOD || type == JarType.OPTIFINE_INSTALLER) {
+				jarType = type;
+				return downloadJar;
+			}
+			return null;
+		}catch (Exception exception){
+			exception.printStackTrace();
+			System.out.println("[OptiFabric - Bilicraft Edition] Failed to download Optifine jar.");
+			JOptionPane.showMessageDialog(new JPanel(), "<html><body><p>下载过程中出现错误："+exception.getMessage()+"</p>" +
+					"<p>请手动下载 Optifine "+ currentMcVersion+" 的二进制文件放入 mods 文件夹中" +
+					"</body></html>", "Optifabric - Bilicraft Edition >> 依赖文件下载失败", JOptionPane.ERROR_MESSAGE);
+			return null;
+		}
 	}
 
 	private static JarType getJarType(File file) throws IOException {
@@ -114,7 +195,7 @@ public class OptifineVersion {
 
 		if (!currentMcVersion.equals(minecraftVersion)) {
 			OptifabricError.setError("This version of OptiFine from %s is not compatible with the current minecraft version\n\nOptifine requires %s you are running %s",
-										file, minecraftVersion, currentMcVersion);
+					file, minecraftVersion, currentMcVersion);
 			return JarType.INCOMPATIBLE;
 		}
 
@@ -154,5 +235,14 @@ public class OptifineVersion {
 		public boolean isError() {
 			return error;
 		}
+	}
+
+	public static class OptifineApiReturns{
+		private String _id;
+		private String mcversion;
+		private String patch;
+		private String type;
+		private Integer __v;
+		private String filename;
 	}
 }
