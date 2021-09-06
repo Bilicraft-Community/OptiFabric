@@ -103,8 +103,7 @@ public class OptifineVersion {
 		}
 
 		JOptionPane.showMessageDialog(new JPanel(), "<html><body><p>由于 Optifine 的 EULA 协议，Bilicraft 不可以在 Modpack 中分发 Optifine 的二进制文件。</p>" +
-				"<p>因此，我们即将从 BMCLAPI 下载 Optifine 并自动安装到您的游戏中，下载过程中，游戏可能无响应。" +
-				"<p>点击 确定 后继续下载 Optifine 二进制文件</p>" +
+				"<p>因此，我们即将从 BMCLAPI 下载 Optifine 并自动安装到您的游戏中。下载过程中，游戏可能不会显示任何窗口。" +
 				"</body></html>", "Optifabric - Bilicraft Edition >> 需要下载依赖文件", JOptionPane.INFORMATION_MESSAGE);
 
 		try {
@@ -120,6 +119,15 @@ public class OptifineVersion {
 			else
 				finalUse = newestRelease;
 			File downloadJar = new File(modsDir, "Optifine_" + currentMcVersion+ "_" + finalUse.type + "_" + finalUse.patch + ".jar");
+			JOptionPane.showMessageDialog(new JPanel(), "<html><body><p>即将下载 Optifine，请核对相关信息，如有误，您可以稍后手动安装</p>" +
+					"<p>版本："+ finalUse.mcversion +"</p>"+
+					"<p>类型："+ finalUse.type+"</p>" +
+					"<p>Optifine版本："+finalUse.patch+"</p>" +
+					"<p></p>" +
+					"<p>将为您安装到："+downloadJar.getAbsolutePath()+"</p>" +
+					"<p></p>" +
+					"<p>下载一旦完成，游戏将会继续启动，请耐心等待。</p>"+
+					"</body></html>", "Optifabric - Bilicraft Edition >> 下载确认", JOptionPane.INFORMATION_MESSAGE);
 
 			httpGet = new HttpGet("https://bmclapi2.bangbang93.com/optifine/:mcversion/:type/:patch"
 					.replace(":mcversion", currentMcVersion)
