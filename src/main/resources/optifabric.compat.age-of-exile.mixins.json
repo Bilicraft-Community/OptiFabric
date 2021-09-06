@@ -1,7 +1,9 @@
 {
-	"parent": "optifabric.mixins.json",
-	"package": "me.modmuss50.optifabric.compat.ageofexile.mixin",
-	"mixins": [
-		"InGameHudMixin"
-	]
+  "parent": "optifabric.mixins.json",
+  "package": "me.modmuss50.optifabric.compat.ageofexile.mixin",
+  "mixins": [
+    "InGameHudMixin"
+  ],
+  "refmap": "optifabric-refmap.json",
+  "minVersion": "0.8.2+build-SNAPSHOT"
 }

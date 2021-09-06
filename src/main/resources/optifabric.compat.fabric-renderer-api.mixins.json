@@ -1,10 +1,12 @@
 {
-	"parent": "optifabric.mixins.json",
-	"package": "me.modmuss50.optifabric.compat.fabricrendererapi.mixin",
-	"plugin": "me.modmuss50.optifabric.compat.fabricrendererapi.RendererMixinPlugin",
-	"mixins": [
-		"BlockModelRendererMixin",
-		"BlockRenderManagerMixin",
-		"ConnectedTexturesMixin"
-	]
+  "parent": "optifabric.mixins.json",
+  "package": "me.modmuss50.optifabric.compat.fabricrendererapi.mixin",
+  "plugin": "me.modmuss50.optifabric.compat.fabricrendererapi.RendererMixinPlugin",
+  "mixins": [
+    "BlockModelRendererMixin",
+    "BlockRenderManagerMixin",
+    "ConnectedTexturesMixin"
+  ],
+  "refmap": "optifabric-refmap.json",
+  "minVersion": "0.8.2+build-SNAPSHOT"
 }

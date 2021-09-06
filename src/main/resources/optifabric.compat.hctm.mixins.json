@@ -1,8 +1,10 @@
 {
-	"parent": "optifabric.mixins.json",
-	"package": "me.modmuss50.optifabric.compat.hctm.mixin",
-	"plugin": "me.modmuss50.optifabric.compat.InterceptingMixinPlugin",
-	"mixins": [
-		"ModelLoaderMixin"
-	]
+  "parent": "optifabric.mixins.json",
+  "package": "me.modmuss50.optifabric.compat.hctm.mixin",
+  "plugin": "me.modmuss50.optifabric.compat.InterceptingMixinPlugin",
+  "mixins": [
+    "ModelLoaderMixin"
+  ],
+  "refmap": "optifabric-refmap.json",
+  "minVersion": "0.8.2+build-SNAPSHOT"
 }

@@ -1,11 +1,13 @@
 {
-	"parent": "optifabric.mixins.json",
-	"package": "me.modmuss50.optifabric.compat.indigo.mixin",
-	"plugin": "me.modmuss50.optifabric.compat.InterceptingMixinPlugin",
-	"mixins": [
-		"RebuildTaskMixin",
-		"ChunkCacheOFMixin",
-		"BlockModelRendererMixin",
-		"BridgedChunkRendererRegionMixin"
-	]
+  "parent": "optifabric.mixins.json",
+  "package": "me.modmuss50.optifabric.compat.indigo.mixin",
+  "plugin": "me.modmuss50.optifabric.compat.InterceptingMixinPlugin",
+  "mixins": [
+    "RebuildTaskMixin",
+    "ChunkCacheOFMixin",
+    "BlockModelRendererMixin",
+    "BridgedChunkRendererRegionMixin"
+  ],
+  "refmap": "optifabric-refmap.json",
+  "minVersion": "0.8.2+build-SNAPSHOT"
 }

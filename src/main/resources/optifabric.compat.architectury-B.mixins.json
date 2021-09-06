@@ -1,8 +1,10 @@
 {
-	"parent": "optifabric.compat.architectury-A.mixins.json",
-	"package": "me.modmuss50.optifabric.compat.architectury.mixin",
-	"plugin": "me.modmuss50.optifabric.compat.InterceptingMixinPlugin",
-	"mixins": [
-		"SpriteAtlasTextureMixin"
-	]
+  "parent": "optifabric.compat.architectury-A.mixins.json",
+  "package": "me.modmuss50.optifabric.compat.architectury.mixin",
+  "plugin": "me.modmuss50.optifabric.compat.InterceptingMixinPlugin",
+  "mixins": [
+    "SpriteAtlasTextureMixin"
+  ],
+  "refmap": "optifabric-refmap.json",
+  "minVersion": "0.8.2+build-SNAPSHOT"
 }

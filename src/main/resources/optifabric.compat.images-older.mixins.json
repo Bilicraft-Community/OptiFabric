@@ -1,8 +1,10 @@
 {
-	"parent": "optifabric.mixins.json",
-	"package": "me.modmuss50.optifabric.compat.images.mixin.older",
-	"plugin": "me.modmuss50.optifabric.compat.images.ImagesMixinPlugin",
-	"mixins": [
-		"BuiltinModelItemRendererMixin"
-	]
+  "parent": "optifabric.mixins.json",
+  "package": "me.modmuss50.optifabric.compat.images.mixin.older",
+  "plugin": "me.modmuss50.optifabric.compat.images.ImagesMixinPlugin",
+  "mixins": [
+    "BuiltinModelItemRendererMixin"
+  ],
+  "refmap": "optifabric-refmap.json",
+  "minVersion": "0.8.2+build-SNAPSHOT"
 }

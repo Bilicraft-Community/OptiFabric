@@ -1,8 +1,10 @@
 {
-	"parent": "optifabric.mixins.json",
-	"package": "me.modmuss50.optifabric.compat.sandwichable.mixin.old",
-	"plugin": "me.modmuss50.optifabric.compat.sandwichable.SandwichableMixinPlugin",
-	"mixins": [
-		"BuiltinModelItemRendererMixin"
-	]
+  "parent": "optifabric.mixins.json",
+  "package": "me.modmuss50.optifabric.compat.sandwichable.mixin.old",
+  "plugin": "me.modmuss50.optifabric.compat.sandwichable.SandwichableMixinPlugin",
+  "mixins": [
+    "BuiltinModelItemRendererMixin"
+  ],
+  "refmap": "optifabric-refmap.json",
+  "minVersion": "0.8.2+build-SNAPSHOT"
 }

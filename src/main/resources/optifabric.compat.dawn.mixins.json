@@ -1,9 +1,11 @@
 {
-	"parent": "optifabric.mixins.json",
-	"package": "me.modmuss50.optifabric.compat.dawn.mixin",
-	"plugin": "me.modmuss50.optifabric.compat.mubble.MubbleMixinPlugin",
-	"mixins": [
-		"ItemRendererMixin",
-		"BackgroundRendererMixin"
-	]
+  "parent": "optifabric.mixins.json",
+  "package": "me.modmuss50.optifabric.compat.dawn.mixin",
+  "plugin": "me.modmuss50.optifabric.compat.mubble.MubbleMixinPlugin",
+  "mixins": [
+    "ItemRendererMixin",
+    "BackgroundRendererMixin"
+  ],
+  "refmap": "optifabric-refmap.json",
+  "minVersion": "0.8.2+build-SNAPSHOT"
 }

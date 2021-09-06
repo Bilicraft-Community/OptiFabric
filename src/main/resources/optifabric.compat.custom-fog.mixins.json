@@ -1,8 +1,10 @@
 {
-	"parent": "optifabric.mixins.json",
-	"package": "me.modmuss50.optifabric.compat.customfog.mixin",
-	"plugin": "me.modmuss50.optifabric.compat.customfog.CustomFogMixinPlugin",
-	"mixins": [
-		"BackgroundRendererMixin"
-	]
+  "parent": "optifabric.mixins.json",
+  "package": "me.modmuss50.optifabric.compat.customfog.mixin",
+  "plugin": "me.modmuss50.optifabric.compat.customfog.CustomFogMixinPlugin",
+  "mixins": [
+    "BackgroundRendererMixin"
+  ],
+  "refmap": "optifabric-refmap.json",
+  "minVersion": "0.8.2+build-SNAPSHOT"
 }

@@ -1,8 +1,10 @@
 {
-	"parent": "optifabric.compat.pswg.mixins.json",
-	"package": "me.modmuss50.optifabric.compat.pswg.mixin",
-	"plugin": "me.modmuss50.optifabric.compat.pswg.StarWarsMixinPlugin",
-	"mixins": [
-		"FrameBufferMixin"
-	]
+  "parent": "optifabric.compat.pswg.mixins.json",
+  "package": "me.modmuss50.optifabric.compat.pswg.mixin",
+  "plugin": "me.modmuss50.optifabric.compat.pswg.StarWarsMixinPlugin",
+  "mixins": [
+    "FrameBufferMixin"
+  ],
+  "refmap": "optifabric-refmap.json",
+  "minVersion": "0.8.2+build-SNAPSHOT"
 }

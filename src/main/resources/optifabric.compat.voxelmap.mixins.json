@@ -1,7 +1,9 @@
 {
-	"parent": "optifabric.mixins.json",
-	"package": "me.modmuss50.optifabric.compat.voxelmap.mixin",
-	"mixins": [
-		"CustomColorsMixin"
-	]
+  "parent": "optifabric.mixins.json",
+  "package": "me.modmuss50.optifabric.compat.voxelmap.mixin",
+  "mixins": [
+    "CustomColorsMixin"
+  ],
+  "refmap": "optifabric-refmap.json",
+  "minVersion": "0.8.2+build-SNAPSHOT"
 }

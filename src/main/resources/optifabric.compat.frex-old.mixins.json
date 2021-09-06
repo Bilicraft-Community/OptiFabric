@@ -1,9 +1,11 @@
 {
-	"parent": "optifabric.mixins.json",
-	"package": "me.modmuss50.optifabric.compat.frex.mixin",
-	"plugin": "me.modmuss50.optifabric.compat.frex.FrexMixinPlugin",
-	"mixins": [
-		"ChunkCacheOF",
-		"old.RebuildTaskMixin"
-	]
+  "parent": "optifabric.mixins.json",
+  "package": "me.modmuss50.optifabric.compat.frex.mixin",
+  "plugin": "me.modmuss50.optifabric.compat.frex.FrexMixinPlugin",
+  "mixins": [
+    "ChunkCacheOF",
+    "old.RebuildTaskMixin"
+  ],
+  "refmap": "optifabric-refmap.json",
+  "minVersion": "0.8.2+build-SNAPSHOT"
 }

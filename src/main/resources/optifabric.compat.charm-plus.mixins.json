@@ -1,8 +1,10 @@
 {
-	"parent": "optifabric.compat.charm-old.mixins.json",
-	"package": "me.modmuss50.optifabric.compat.charm.mixin.old",
-	"plugin": "me.modmuss50.optifabric.compat.charm.CharmMixinPlugin",
-	"mixins": [
-		"UtilMixin"
-	]
+  "parent": "optifabric.compat.charm-old.mixins.json",
+  "package": "me.modmuss50.optifabric.compat.charm.mixin.old",
+  "plugin": "me.modmuss50.optifabric.compat.charm.CharmMixinPlugin",
+  "mixins": [
+    "UtilMixin"
+  ],
+  "refmap": "optifabric-refmap.json",
+  "minVersion": "0.8.2+build-SNAPSHOT"
 }

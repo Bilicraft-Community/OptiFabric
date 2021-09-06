@@ -1,9 +1,11 @@
 {
-	"parent": "optifabric.mixins.json",
-	"package": "me.modmuss50.optifabric.compat.apoli.mixin",
-	"plugin": "me.modmuss50.optifabric.compat.apoli.ApoliMixinPlugin",
-	"mixins": [
-		"BackgroundRendererMixin",
-		"ElytraFeatureRendererMixin"
-	]
+  "parent": "optifabric.mixins.json",
+  "package": "me.modmuss50.optifabric.compat.apoli.mixin",
+  "plugin": "me.modmuss50.optifabric.compat.apoli.ApoliMixinPlugin",
+  "mixins": [
+    "BackgroundRendererMixin",
+    "ElytraFeatureRendererMixin"
+  ],
+  "refmap": "optifabric-refmap.json",
+  "minVersion": "0.8.2+build-SNAPSHOT"
 }

@@ -1,8 +1,10 @@
 {
-	"parent": "optifabric.mixins.json",
-	"package": "me.modmuss50.optifabric.compat.fabricrenderingdata.mixin",
-	"mixins": [
-		"BridgedChunkRendererRegionMixin",
-		"ChunkCacheOFMixin"
-	]
+  "parent": "optifabric.mixins.json",
+  "package": "me.modmuss50.optifabric.compat.fabricrenderingdata.mixin",
+  "mixins": [
+    "BridgedChunkRendererRegionMixin",
+    "ChunkCacheOFMixin"
+  ],
+  "refmap": "optifabric-refmap.json",
+  "minVersion": "0.8.2+build-SNAPSHOT"
 }

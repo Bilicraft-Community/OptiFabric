@@ -1,8 +1,10 @@
 {
-	"parent": "optifabric.mixins.json",
-	"package": "me.modmuss50.optifabric.compat.chatheads.mixin",
-	"plugin": "me.modmuss50.optifabric.compat.InterceptingMixinPlugin",
-	"mixins": [
-		"ChatHudMixin"
-	]
+  "parent": "optifabric.mixins.json",
+  "package": "me.modmuss50.optifabric.compat.chatheads.mixin",
+  "plugin": "me.modmuss50.optifabric.compat.InterceptingMixinPlugin",
+  "mixins": [
+    "ChatHudMixin"
+  ],
+  "refmap": "optifabric-refmap.json",
+  "minVersion": "0.8.2+build-SNAPSHOT"
 }

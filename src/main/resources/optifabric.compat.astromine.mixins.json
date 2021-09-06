@@ -1,8 +1,10 @@
 {
-	"parent": "optifabric.mixins.json",
-	"package": "me.modmuss50.optifabric.compat.astromine.mixin",
-	"plugin": "me.modmuss50.optifabric.compat.astromine.AstromineMixinPlugin",
-	"mixins": [
-		"GameRendererMixin"
-	]
+  "parent": "optifabric.mixins.json",
+  "package": "me.modmuss50.optifabric.compat.astromine.mixin",
+  "plugin": "me.modmuss50.optifabric.compat.astromine.AstromineMixinPlugin",
+  "mixins": [
+    "GameRendererMixin"
+  ],
+  "refmap": "optifabric-refmap.json",
+  "minVersion": "0.8.2+build-SNAPSHOT"
 }

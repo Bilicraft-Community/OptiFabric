@@ -1,14 +1,16 @@
 {
-	"parent": "optifabric.mixins.json",
-	"package": "me.modmuss50.optifabric.mixin",
-	"mixins": [
-		"MixinReflectorClass",
-		"MixinOptifineConfig",
-		"MixinDefaultResourcePack",
-		"CustomColoursMixin",
-		"ShadersMixin",
-		"VideoOptionsScreenMixin",
-		"Config",
-		"SMCLog"
-	]
+  "parent": "optifabric.mixins.json",
+  "package": "me.modmuss50.optifabric.mixin",
+  "mixins": [
+    "MixinReflectorClass",
+    "MixinOptifineConfig",
+    "MixinDefaultResourcePack",
+    "CustomColoursMixin",
+    "ShadersMixin",
+    "VideoOptionsScreenMixin",
+    "Config",
+    "SMCLog"
+  ],
+  "refmap": "optifabric-refmap.json",
+  "minVersion": "0.8.2+build-SNAPSHOT"
 }
